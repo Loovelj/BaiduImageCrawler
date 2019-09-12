@@ -8,12 +8,13 @@ $ sudo pip3 install -r requirements.txt
 ```
 ## Usage 使用
 ```
-$ python3 BaiduImageCrawler -k <keyword>
+$ python3 BaiduImageCrawler <keyword>
 ```
 ## Optional arguments 可选项
 ```
-BaiduImageCrawler.py [-h] [-f FILE_PATH] [-k KEYWORD] [-n IMG_NAME]
-                            [-s START_PAGE] [-e END_PAGE]
+BaiduImageCrawler.py [-h] [-f FILE_PATH] [-n IMG_NAME] [-s START_PAGE]
+                            [-e END_PAGE]
+                            keyword
 -h 帮助
 -f 图片文件夹路径
 -n 图片名

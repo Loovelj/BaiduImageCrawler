@@ -16,7 +16,7 @@ def find_url(start_page, end_page, keyword):
     url = 'http://image.baidu.com/search/flip?tn=baiduimage&ie=utf-8&word=' + keyword + '&pn='
     img_url_list = []
     bar = tqdm(range(start_page - 1, end_page))
-    bar.set_description("Parsing images url...")
+    bar.set_description("Parsing images url")
     for cur_page in bar:
         try:
             result = requests.get(url + str(cur_page), timeout=10)
@@ -32,7 +32,7 @@ def find_url(start_page, end_page, keyword):
 def download_img(img_url_list, file_path, img_name):
     index = 1
     bar = tqdm(img_url_list)
-    bar.set_description("Downloading...")
+    bar.set_description("Downloading")
     for item in bar:
         try:
             if item is not None:

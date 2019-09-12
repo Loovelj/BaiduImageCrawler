@@ -58,9 +58,9 @@ def img_crawler(start_page, end_page, keyword, img_name, file_path):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
+    parser.add_argument("keyword", type=str, help="search keyword")
     parser.add_argument("-f", "--file_path", type=str, default="data/", help="path of save file")
-    parser.add_argument("-k", "--keyword", type=str, default="塑料瓶", help="search keyword")
-    parser.add_argument("-n", "--img_name", type=str, default="bottle", help="name of images")
+    parser.add_argument("-n", "--img_name", type=str, default="data", help="name of images")
     parser.add_argument("-s", "--start_page", type=int, default=1, help="index of start page")
     parser.add_argument("-e", "--end_page", type=int, default=1, help="index of end page")
     arg = parser.parse_args()

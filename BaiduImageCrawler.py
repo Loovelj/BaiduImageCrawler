@@ -14,7 +14,7 @@ import argparse
 
 def find_url(start_page, end_page, keyword):
     url = 'http://image.baidu.com/search/flip?tn=baiduimage&ie=utf-8&word=' + keyword + '&pn='
-    img_url_list = []
+    tmp_url_list = []
     bar = tqdm(range(start_page - 1, end_page))
     bar.set_description("Parsing images url")
     for cur_page in bar:
@@ -25,7 +25,10 @@ def find_url(start_page, end_page, keyword):
             continue
         else:
             result = result.text
-            img_url_list += re.findall('"objURL":"(.*?)",', result, re.S)
+            tmp_url_list += re.findall('"objURL":"(.*?)",', result, re.S)
+    #去重且保持图片下载顺序不变
+    img_url_list = list(set(tmp_url_list))
+    img_url_list.sort(key=tmp_url_list.index)
     return img_url_list
 
 
@@ -64,6 +67,6 @@ if __name__ == '__main__':
     parser.add_argument("-f", "--file_path", type=str, default="data/", help="path of save file")
     parser.add_argument("-n", "--img_name", type=str, default="data", help="name of images")
     parser.add_argument("-s", "--start_page", type=int, default=1, help="index of start page")
-    parser.add_argument("-e", "--end_page", type=int, default=3, help="index of end page")
+    parser.add_argument("-e", "--end_page", type=int, default=1, help="index of end page")
     arg = parser.parse_args()
     img_crawler(arg.start_page, arg.end_page, arg.keyword, arg.img_name, arg.file_path)
